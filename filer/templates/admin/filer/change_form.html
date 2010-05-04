@@ -1,8 +1,9 @@
 {% extends "admin/change_form.html" %}
 {% load i18n admin_modify adminmedia filermedia %}
 
-{% block extrahead %}{{ block.super }}
-
+{% block extrahead %}
+<script type="text/javascript" src="{% filer_staticmedia_prefix %}js/jquery-1.3.2.min.js"></script>
+{{ block.super }}
 {% endblock %}
 
 {% block extrastyle %}{{ block.super }}

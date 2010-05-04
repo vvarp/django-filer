@@ -1,5 +1,4 @@
-(function($) {
-$(function(){
+jQuery(function(){
 	var PAPER_WIDTH, PAPER_HEIGTH;
 	var paper, ratio;
 	var isDrag = false;
@@ -55,20 +54,20 @@ $(function(){
 	}
 	
 	function updatePosition(x, y) {
-		$("#id_subject_location").val(x === undefined ? '' : parseInt(parseInt(x)*ratio) + ',' + parseInt(parseInt(y)*ratio) );
+		jQuery("#id_subject_location").val(x === undefined ? '' : parseInt(parseInt(x)*ratio) + ',' + parseInt(parseInt(y)*ratio) );
 	}
 	
 	
-	$('#image_container img').load(function(){
-		PAPER_WIDTH = $('#image_container img').width();
-		PAPER_HEIGTH = $('#image_container img').height();
-		$('#image_container').height(PAPER_HEIGTH + 'px');
+	jQuery('#image_container img').load(function(){
+		PAPER_WIDTH = jQuery('#image_container img').width();
+		PAPER_HEIGTH = jQuery('#image_container img').height();
+		jQuery('#image_container').height(PAPER_HEIGTH + 'px');
 		
 		//  interface
-		ratio = parseFloat($('#image_container img').attr('rel'));
+		ratio = parseFloat(jQuery('#image_container img').attr('rel'));
 		paper = Raphael(document.getElementById("paper"), PAPER_WIDTH, PAPER_HEIGTH);	
 		// read location from form
-		var location = $("#id_subject_location").val();
+		var location = jQuery("#id_subject_location").val();
 		var x, y;
 		if (location){
 			x = parseInt(parseInt(location.split(',')[0])/ratio);
@@ -77,10 +76,3 @@ $(function(){
 		add(x, y);
 	});
 });
-})(django.jQuery);
-
-
-	
-    
-        
-    

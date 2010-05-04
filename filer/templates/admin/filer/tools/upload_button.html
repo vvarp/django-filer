@@ -5,7 +5,7 @@
 <script type="text/javascript">
 //<![CDATA[
 var swfu;
-$(document).ready(function() {
+jQuery(document).ready(function() {
 	// Check to see if SWFUpload is available
 	if (typeof(SWFUpload) === "undefined") {
 		return;
@@ -36,8 +36,8 @@ $(document).ready(function() {
 			}
 			
 			var queueString = file.id + ":  0%:" + file.name;
-			$('#' + QUEUE_CONTAINER_ID + ' .noItemsRow').hide();
-			$('#' + QUEUE_CONTAINER_ID).append('<tr id="' + file.id + '" class="fileUploadQueueItem">\
+			jQuery('#' + QUEUE_CONTAINER_ID + ' .noItemsRow').hide();
+			jQuery('#' + QUEUE_CONTAINER_ID).append('<tr id="' + file.id + '" class="fileUploadQueueItem">\
 					<td><div class="loadingThumb" /></td>\
 					<td>\
 						<div><span class="fileName">' + fileName + ' (' + byteSize + suffix + ')</span><span class="percentage">&nbsp;</span><span class="serveraction">&nbsp;</span></div>\
@@ -53,12 +53,12 @@ $(document).ready(function() {
 		uploadProgress: function(file, bytesLoaded, totalBytes) {
 			try {
 				var percent = Math.ceil((bytesLoaded / file.size) * 100);
-				$("#" + file.id + "ProgressBar").css('width', percent + '%');
+				jQuery("#" + file.id + "ProgressBar").css('width', percent + '%');
 				var queueString = file.id + ":" + percent + "%:" + file.name;
 				if (parseInt(percent)==100){// && fileObj.type.toLowerCase()=='.zip') {
-					if ($.inArray('zip',file.name.toLowerCase().split('.')) == 1) {
-						$("#" + file.id + " .serveraction").text(' unpacking zip...');
-						$("#" + file.id).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000);
+					if (jQuery.inArray('zip',file.name.toLowerCase().split('.')) == 1) {
+						jQuery("#" + file.id + " .serveraction").text(' unpacking zip...');
+						jQuery("#" + file.id).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000).effect("highlight",{},4000);
 					}
 				}
 			} catch (ex) {
@@ -70,8 +70,8 @@ $(document).ready(function() {
 			try {
 				if (receivedResponse) {
 					var responsetext = unescape(serverData);
-					var newElements = $(responsetext);
-					$("#" + file.id).before(newElements).remove();
+					var newElements = jQuery(responsetext);
+					jQuery("#" + file.id).before(newElements).remove();
 					newElements.effect("highlight", {}, 1000);
 				} else {
 					this.debug("repsonse timeout for " + file.id)
@@ -126,7 +126,7 @@ $(document).ready(function() {
 				}
 	
 				var errorString = errorName + ":File ID: " + (typeof(file) === "object" && file !== null ? file.id : "na") + ":" + message;
-				$('#' + file.id + ' .serveraction').text(errorName);
+				jQuery('#' + file.id + ' .serveraction').text(errorName);
 			} catch (ex) {
 				this.debug(ex);
 			}
@@ -135,7 +135,7 @@ $(document).ready(function() {
     var settings = {
         flash_url : "{% filer_staticmedia_prefix %}flash/swfupload.swf",
         upload_url: "{% url admin:filer-ajax_upload %}",
-        post_params: {'jsessionid':$.cookie('sessionid')},
+        post_params: {'jsessionid':jQuery.cookie('sessionid')},
         file_size_limit : "100 MB",
         file_types : "*.*",
         file_types_description : "All Files",
